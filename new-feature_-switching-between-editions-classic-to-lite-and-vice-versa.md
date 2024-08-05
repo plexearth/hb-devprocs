@@ -1,99 +1,87 @@
-### Plex-Earth Deployment Documentation
+# New Feature\_ Switching Between Editions (CLASSIC to LITE and vice versa)
 
-#### Overview
-Plex-Earth is an AutoCAD plug-in designed to streamline the design process by integrating Google Earth imagery and other online maps directly into AutoCAD. This documentation outlines the steps required for deploying Plex-Earth, including how to configure the setup project in Visual Studio (VS), along with some hints and tricks to ensure a smooth setup.
+### **Feature Title:**
 
-#### Setup Projects
-We have the following setup projects in our Setups Solution:
-- Setup.PlexEarth.Acad
-- Setup.PlexEarth.Acad.AppStore
-- Setup.PlexEarth.BricsCAD
-- Setup.PlexEarth.Lite.Acad
-- Setup.PlexEarth.Lite.Acad.AppStore
-- Setup.PlexEarth.Lite.BricsCAD
+### **Switching Between Editions (CLASSIC to LITE and vice versa)1111**
 
-#### Setup Project Properties Description
+**Date:** 2024-07-29\
+**Author:** [Lambros Kaliakatsos](mailto:lkaliakatsos@plexscape.com)
 
-The Setup Project Properties window in Visual Studio for the Plex-Earth deployment project is used to configure various settings for the installer. Below is a description of each property and its purpose:
+***
 
-##### Miscellaneous Properties
+### **Overview**
 
-1. **AddRemoveProgramsIcon**:
-   - Specifies the icon that will be displayed in the Add or Remove Programs list in Windows. In this case, it is set to `(Icon)`.
+**Summary:**\
+This feature enables Plex-Earth users to switch between different editions, such as CLASSIC (fully-fledged/paid plans) and LITE (free plan). It addresses the problem of users needing flexibility to continue using Plex-Earth after their free trial or subscription has expired, or to try out the full version if they are currently on the LITE plan.
 
-2. **Author**:
-   - The name of the author or company that created the software. Here, it is set to `Plexscape`.
+**Benefits:**
 
-3. **BackwardCompatibleIDGeneration**:
-   - Indicates whether the setup project should generate backward-compatible IDs. It is set to `False`.
+* Allows users to continue using Plex-Earth without interruption by switching to the LITE version after their trial or subscription ends.
+* Provides flexibility for LITE users to experience the full capabilities of the CLASSIC version.
+* Helps users manage costs by allowing them to switch to a free plan when they no longer need premium features.
+* Business-wise, this feature is expected to stimulate conversions of LITE users to paid plans. It allows trial or existing users to access the free version, maintaining their engagement with Plex-Earth, and potentially converting to paid plans or renewing expired subscriptions in the future.
 
-4. **Description**:
-   - A brief description of the product. For this setup, it states `Copyright ©2024 by Plexscape`.
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-5. **DetectNewerInstalledVersion**:
-   - If set to `True`, the installer will check for newer versions of the application during installation. It is set to `True`.
+### **Details**
 
-6. **InstallAllUsers**:
-   - Determines if the application should be installed for all users on the computer. It is set to `False`, meaning it will install only for the current user.
+**Functionality:**\
+Each Edition is another Application in Wings, the licensing system, and a user starts with Plex-Earth activated on their workstation in one of the Editions (free trial users, subscribers, or Lite version users).
 
-7. **Keywords**:
-   - Keywords associated with the product to aid in searchability. Here, it includes `Plex-Earth, AutoCAD, 2025, Installer, MSI, Google Earth`.
+Plex-Earth offers a transition to another Edition under specific circumstances:
 
-8. **Localization**:
-   - Specifies the language and regional settings for the installation. It is set to `English (United States)`.
+* **Free Trial Offer:** A message offers a Lite user a free trial of the Pro version (CLASSIC Edition).
+* **Upgrade Offer:** A message prompts users to upgrade to a paid plan (Pro - CLASSIC).
+* **Free Trial Expiry:** When the free trial has finished, a message allows users to either upgrade to a paid plan (Pro—CLASSIC) or continue with the free version (LITE Edition).
+* **Subscription Expiry:** When a subscription expires, a message gives users the option to renew it or fall back to the LITE version.
 
-9. **Manufacturer**:
-   - The name of the company that manufactures the product. It is set to `Plexscape`.
+Users can also switch to another edition through the "My Account" section in Plex-Earth.\
+In any case, the user will have to click a button to "Accept" and initiate the transition to the other Edition.
 
-10. **ManufacturerUrl**:
-    - The URL for the manufacturer's website. Here, it is `https://www.plexearth.com`.
+**Usage:**
 
-11. **PostBuildEvent**:
-    - Commands or scripts to run after the build process. It signs the build output using the Windows Kits signtool.exe:
-      ```plaintext
-      "C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe" sign /a /d "Plex-Earth for AutoCAD 2020-2025" /i "DigiCert" /td sha256 /fd sha256 /tr http://timestamp.digicert.com /v $(BuiltOupputPath)
-      ```
+1. When Plex-Earth prompts users with a message offering a switch (e.g., free trial offer, subscription expiration notice), users can follow the on-screen instructions to switch editions.
+2. Alternatively, users can manually navigate to "My Account" in Plex-Earth, select the option to switch editions, choose their desired edition (CLASSIC or LITE), and confirm the switch by clicking the "Accept" button.
 
-12. **PreBuildEvent**:
-    - Commands or scripts to run before the build process. It signs various components using the Windows Kits signtool.exe:
-      ```plaintext
-      "C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe" sign /tr http://timestamp.digicert.com /i "DigiCert" /td sha256 /fd sha256 /v /a D:\source\PlexEarth-Plugin.2022\Setups\Setup.Files\PlexEarth.Acad\Contents\Windows\PlexEarth.dll"
-      "C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe" sign /tr http://timestamp.digicert.com /i "DigiCert" /td sha256 /fd sha256 /v /a D:\source\PlexEarth-Plugin.2022\Setups\Setup.Files\MapExplorer\map-explorer.exe"
-      "C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe" sign /tr http://timestamp.digicert.com /i "DigiCert" /td sha256 /fd sha256 /v /a D:\source\PlexEarth-Plugin.2022\Setups\Setup.Files\PlexEarth.Acad\Contents\Windows.NET8\PlexEarth.dll"
-      ```
+**Prerequisites:**
 
-13. **ProductCode**:
-    - A unique identifier for the product. This code is automatically generated when the version is specified. Here, it is `[REDACTED]`.
+* Must have a Plex-Earth account.
+* Appropriate permissions to change plan settings.
+* You must be either on a free trial or an active subscription or currently using the LITE version.
 
-14. **ProductName**:
-    - The name of the product. For this setup, it is `Plex-Earth for AutoCAD 2020-2025`.
+### **Technical**
 
-15. **RemovePreviousVersions**:
-    - Determines if the installer should remove previous versions of the product before installing the new version. It is set to `True`.
+**Technical Details:**
 
-16. **RunPostBuildEvent**:
-    - Specifies when the post-build event should be executed. It is set to `On successful build`.
+* **Registry Storage:**
+  * The current edition will be stored as a string value in the "**EDITION**" key of the `Computer\HKEY_CURRENT_USER\Software\Plex-Earth 2025` path in the Windows Registry.
+  * Possible values are `CLASSIC` and `LITE`. If not set, it defaults to `CLASSIC`.
+  * Different installers for different editions should write the appropriate `EDITION` value in the Registry.
+  * Consideration is needed for cases where access to `HKEY_CURRENT_USER` is not allowed.
+* **C# Class for Application Instances:**
+  * A new class will handle instances of applications for various editions.
+  * The class will include a `Current` property for the active Application instance.
+  * The class will have methods to `Switch` and `Migrate` to different editions.
+  * `Switch(string targetEdition)`: Creates an instance of the application specified in the `targetEdition` parameter.
+  * `Migrate(string targetEdition)`: Activates the user to the `targetEdition` application with their email and profile data, and then switches to it. During migration, the user will be prompted to confirm by entering a confirmation code received via email.
+* **Configuration Object in R1.Init File:**
+  * An object in the `R1.Init` file in the application's config will specify to which Editions and Service Plans each Application can be migrated.
+  * Whether an activation can be migrated will be controlled by a respective Permission value.
+  * A workstation/user-specific tag will control and apply any overrides.
 
-17. **SearchPath**:
-    - The search path for required files. This can be configured if needed.
+**Performance Considerations:**
 
-18. **Subject**:
-    - A more detailed description or subject of the installer. This can be customized as required.
-
-19. **SupportPhone**:
-    - The phone number for support. This is typically used for customer support purposes.
-
-20. **SupportUrl**:
-    - The URL for the support page. It is set to `https://support.plexscape.com`.
-
-21. **TargetPlatform**:
-    - Specifies the platform for which the installer is built. Here, it is `x64`, indicating a 64-bit platform.
-
-22. **Title**:
-    - The title of the product, which often appears in the installer UI. It is `Plex-Earth for AutoCAD 2020-2025`.
-
-23. **UpgradeCode**:
-    - A unique identifier for the upgrade, which helps in managing updates. The `UpgradeCode` is unique to a product and consistent across versions to prevent simultaneous installations of different versions of the same product. For instance, `Plex-Earth for AutoCAD 2020-2025` shares the same `UpgradeCode` with `Plex-Earth Lite for AutoCAD 2020-2025` and older versions like `Plex-Earth 4 for AutoCAD`. In contrast, `Plex-Earth for BricsCAD` has a different `UpgradeCode` to allow simultaneous installations of both products.
-
-24. **Version**:
-    - The version of the product being installed. This is specified from the `PlexEarth.dll` assembly, and a new `ProductCode` is generated accordingly. Here, it is `25.0.8972`.
+* **Registry Access:**
+  * Accessing and modifying the Windows Registry is generally a lightweight operation, but permissions and security settings might affect performance. Ensure error handling is in place for scenarios where access is restricted.
+* **Switching and Migrating Editions:**
+  * Switching and migrating editions involve creating instances and possibly performing network operations (e.g., email verification). These operations should be optimized for speed and efficiency.
+  * Ensure that the migration process, including sending and verifying confirmation codes, is streamlined to minimize delay and user frustration.
+* **Class Handling:**
+  * The new class handling application instances should be designed to manage resources efficiently. Proper disposal of instances and management of memory is crucial to prevent leaks and ensure smooth transitions.
+* **Config File Access:**
+  * Reading and writing to the `R1.Init` configuration file should be performed with care to avoid bottlenecks. Ensure that file I/O operations are optimized and do not block the main application thread.
+* **User Experience:**
+  * The user interface should provide feedback during the transition process to avoid the perception that the application is freezing or unresponsive. Loading indicators and progress messages can enhance the user experience.
+* **Testing and Monitoring:**
+  * Thorough testing is required to ensure the feature performs well under various conditions, such as different network speeds, system permissions, and user scenarios.
+  * Implement monitoring to track the performance of the switching and migration processes. Use analytics to identify and address any performance bottlenecks.
