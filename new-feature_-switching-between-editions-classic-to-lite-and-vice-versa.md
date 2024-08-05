@@ -2,7 +2,7 @@
 
 ### **Feature Title:**
 
-### **Switching Between Editions (CLASSIC to LITE and vice versa)**
+### **Switching Between Editions (CLASSIC to LITE and vice versa)1111**
 
 **Date:** 2024-07-29\
 **Author:** [Lambros Kaliakatsos](mailto:lkaliakatsos@plexscape.com)
