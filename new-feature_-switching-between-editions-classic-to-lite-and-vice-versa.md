@@ -21,6 +21,8 @@ This feature enables Plex-Earth users to switch between different editions, such
 * Helps users manage costs by allowing them to switch to a free plan when they no longer need premium features.
 * Business-wise, this feature is expected to stimulate conversions of LITE users to paid plans. It allows trial or existing users to access the free version, maintaining their engagement with Plex-Earth, and potentially converting to paid plans or renewing expired subscriptions in the future.
 
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 ### **Details**
 
 **Functionality:**\
