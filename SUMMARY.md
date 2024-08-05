@@ -5,5 +5,4 @@
 
 ## Deployment
 
-* [Page 1](deployment/page-1.md)
 * [Setup Projects Configuration](deployment/setup-projects-configuration.md)

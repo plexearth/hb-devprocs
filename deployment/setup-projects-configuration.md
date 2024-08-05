@@ -60,7 +60,7 @@ Below is a description of each property and its purpose:
         "C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe" sign /tr http://timestamp.digicert.com /i "DigiCert" /td sha256 /fd sha256 /v /a D:\source\PlexEarth-Plugin.2022\Setups\Setup.Files\PlexEarth.Acad\Contents\Windows.NET8\PlexEarth.dll"
         ```
 13. **ProductCode**:
-    * A unique identifier for the product. This code is automatically generated when the version is specified. Here, it is `{A082BA4D-6EBB-4602-BCE1-EEF794CABF7F}`.
+    * A unique identifier for the product. This code is automatically generated when the version is specified.
 14. **ProductName**:
     * The name of the product. For this setup, it is `Plex-Earth for AutoCAD 2020-2025`.
 15. **RemovePreviousVersions**:
